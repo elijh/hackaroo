@@ -1,0 +1,49 @@
+
+
+Running hackaroo locally:
+
+  sudo apt-get install ruby
+  sudo gem install webrick
+  cd hackaroo
+  server-start
+
+
+Exercises
+
+  To add an exercise, create a new file in 'exercises' directory and update 
+  hackaroo/exercise-data.js.
+  
+  Good sources for inspiration:
+  
+  http://mislav.uniqpath.com/poignant-guide/
+  http://hackety-hack.com/
+    https://github.com/hacketyhack/hacketyhack/tree/master/lessons
+  http://learncodethehardway.org/
+  http://stackoverflow.com/questions/11246/best-resources-to-learn-javascript
+  https://developer.mozilla.org/en/A_re-introduction_to_JavaScript
+  http://eloquentjavascript.net/
+  http://ejohn.org/apps/learn
+
+Development Notes
+=====================================
+
+libraries used:
+
+  for rendering the result:
+    prototype
+    jcanvascript
+
+  for the editor
+    prototype
+    codemirror2
+    showdown
+
+Canvas
+----------------------------------
+
+A comparison of 2d canvas libraries:
+http://www.suburban-glory.com/blog?page=141
+
+
+
+

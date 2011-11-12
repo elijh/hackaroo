@@ -1,0 +1,157 @@
+We are going to start leaning how to draw by making some lines. To set up the drawing canvas, you define a function called `setup()`. For drawing graphics, we are going to use a special library called 'processing' that is made available to your code through the variable `g`.
+
+Here is a very simple line drawing. You can skip the comments.
+
+    function setup() {
+      g.size(300, 500);    // sets the size of our drawing canvas
+      g.background(0);     // sets the background to be black
+      g.strokeWeight(10);  // sets the line width to be 10 pixels
+      g.stroke(255);       // sets the line color to be white
+      
+      // now, lets draw a line from the top left of the canvas to
+      // the bottom right. g.width and g.width are the width and
+      // height of the canvas, respectively.
+      g.line(0, 0, g.width, g.height);
+    }
+
+Lets add a few more lines, in different shades of grey. For monochrome colors, 0 is black, 255 is white, and any number in between is some shade of grey.
+
+    function setup() {
+      g.size(300, 500);
+      g.background(0);
+      g.strokeWeight(10);
+
+      g.stroke(150);
+      g.line(0, 0, g.width, g.height);
+      
+      g.stroke(200);
+      g.line(g.width/2, 0, g.width/2, g.height);
+      
+      g.stroke(250);
+      g.line(g.width, 0, 0, g.height);
+    }
+
+If you notice, there is some redundancy there. Lets create a helper function `vertical_line()` to handle the line drawing for us. The lines we are drawing are always from the top to the bottom, with the only difference being the start and end X coordinate. 
+
+    function vertical_line(color, top_x, bottom_x) {
+      g.stroke(color);
+      g.line(top_x, 0, bottom_x, g.height);
+    }
+
+    function setup() {
+      g.size(300, 500);
+      g.background(0);
+      g.strokeWeight(10);
+
+      vertical_line(150, 0, g.width);
+      vertical_line(200, g.width/2, g.width/2);
+      vertical_line(250, g.width, 0);
+    }
+
+OK, but that is still pretty boring. Lets make something a little more interesting:
+
+    var width = 30;  // width of the line
+    var alpha = 200; // how blended the lines will be
+
+    function vertical_line(color, top_x, bottom_x) {
+      g.stroke(color, alpha);
+      g.line(top_x, 0, bottom_x, g.height);
+    }
+
+    function setup() {
+      g.size(300, 500);
+      g.background(0);
+      g.strokeWeight(width);
+
+      vertical_line(100, 0,   300);
+      vertical_line(125, 50,  200);
+      vertical_line(150, 100, 100);
+      vertical_line(200, 150, 0);
+      vertical_line(250, 200, -100);
+    }
+
+That is pretty cool. But suppose we want many more lines? Instead of writing hundreds of `vertical_line()` calls, we can create a `for` loop to call `vertical_line()` many times.
+
+    var width = 10;   // note the change in
+    var alpha = 100;  // values here
+
+    function vertical_line(color, top_x, bottom_x) {
+      g.stroke(color, alpha);
+      g.line(top_x, 0, bottom_x, g.height);
+    }
+
+    function setup() {
+      g.size(300, 500);
+      g.background(0);
+      g.strokeWeight(width);
+      
+      for(var x1 = 0; x1 < g.width; x1++) {
+        var x2 = g.random(0, g.width);
+        var grey = g.random(0, 255);
+        vertical_line(grey, x1, x2);
+      }
+    }
+
+Now, lets add a little animation. We will define both `setup` and `draw`. The setup is run just once, but draw is called many times a second (depending on the frame rate).
+
+    var width = 10;
+    var alpha = 100;
+
+    function vertical_line(color, top_x, bottom_x) {
+      g.stroke(color, alpha);
+      g.line(top_x, 0, bottom_x, g.height);
+    }
+
+    function setup() {
+      g.size(300, 500);
+      g.background(0);
+      g.strokeWeight(width);
+      g.frameRate(16);
+    }
+    
+    var x1 = 0;
+    function draw() {
+      x1 = (x1 + 1) % g.width;
+      var x2 = g.random(0, g.width);
+      var grey = g.random(0, 255);
+      vertical_line(grey, x1, x2);
+    }
+
+There is something tricky going on here. What does this line do?
+
+    x1 = (x1 + 1) % g.width;
+
+The `%` (modulo) symbol is like division, but it returns the remainder. The result of this line is that when x1 gets larger than the width of the canvas, it will reset back to zero.
+
+Want to try something colorful? Change the last two lines of `draw()` to be this:
+
+      var color = g.color(x1, x2, g.random(255));
+      vertical_line(color, x1, x2);
+
+In completed form, your code should look like this:
+
+    var width = 10;
+    var alpha = 100;
+
+    function vertical_line(color, top_x, bottom_x) {
+      g.stroke(color, alpha);
+      g.line(top_x, 0, bottom_x, g.height);
+    }
+
+    function setup() {
+      g.size(300, 500);
+      g.background(0);
+      g.strokeWeight(width);
+      g.frameRate(16);
+    }
+    
+    var x1 = 0;
+    function draw() {
+      x1 = (x1 + 1) % g.width;
+      var x2 = g.random(0, g.width);
+      var color = g.color(x1, x2, g.random(255));
+      vertical_line(color, x1, x2);
+    }
+
+Ohh, that is pretty. We will learn more about colors later on.
+

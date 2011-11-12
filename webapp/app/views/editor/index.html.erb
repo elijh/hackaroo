@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hackaroo</title>
+    <link rel="icon" href="/img/icon.png" type="image/x-icon" /> 
+
+    <script src="/lib/prototype.js"></script>
+
+    <!-- codemirror -- syntax highlighter -->
+    <script src="/lib/codemirror2/codemirror.js"></script>
+    <link rel="stylesheet" href="/lib/codemirror2/codemirror.css">
+    <script src="/lib/codemirror2/mode/javascript/javascript.js"></script>
+    <link rel="stylesheet" href="/lib/codemirror2/theme/default.css">
+    <link rel="stylesheet" href="/lib/codemirror2/theme/night.css">
+
+    <!-- modalbox -- popup dialog -->
+    <link rel="stylesheet" href="/lib/modalbox/modalbox.css"/> 
+    <script src="/lib/modalbox/modalbox.js"></script> 
+
+    <!-- showdown -- markdown in javascript -->
+    <script src="/lib/showdown.js"></script>
+
+    <!-- jshint -- check javascript syntax -->
+    <script src="/lib/jshint.js"></script>
+
+    <!-- hackaroo -->
+    <script src="/hackaroo/editor.js"></script>
+    <script src="/hackaroo/exercise.js"></script>
+    <script src="/hackaroo/user.js"></script>
+    <script src="/exercises/exercise-list.js"></script>
+    <link rel="stylesheet" href="/hackaroo/editor.css">
+
+    <style>
+    </style>
+
+    <script>
+    </script>
+  </head>
+  <body>
+    <div id="container">
+
+      <div id="header">
+        <div class="left links">
+          <a href="javascript:Exercise.previous()">Previous</a>
+          <a href="javascript:Exercise.choose()">Choose</a>
+          <a href="javascript:Exercise.next()">Next</a>
+        </div>
+        <div class="middle links" id="exercise_number">No exercise selected</div>
+        <div class="right links ">
+          <a href="javascript:Exercise.remote_save()">Save</a>
+          <a href="javascript:Exercise.remote_load()">Restore</a>
+          <a href="javascript:User.logout()">Logout</a>
+        </div>
+      </div>
+
+      <div id="column_headers">
+        <div class="column_header left">
+          Instructions
+        </div>
+        <div class="column_header middle">
+          Code
+        </div>
+        <div class="column_header right">
+          Result
+        </div>
+      </div>
+
+      <div id="columns">
+        <div class="column left">
+          <div id="instructions"></div>
+        </div>
+        <div class="column middle">
+          <textarea id="code"></textarea>
+        </div>
+        <div class="column right">
+          <iframe class="stretch" id="result"></iframe>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
+
