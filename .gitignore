@@ -1,0 +1,5 @@
+webapp/db/*.sqlite3
+webapp/log/*.log
+webapp/tmp/*
+
+
