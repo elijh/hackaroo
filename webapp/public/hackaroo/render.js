@@ -55,6 +55,16 @@ function inputKeyPress(event) {
 }
 
 //
+// NUMBERS
+//
+
+// The built-in modulo operator in javascript doesn't
+// correctly handle negative numbers. This one does.
+//Number.prototype.mod = function(n) {
+//  return ((this%n)+n)%n;
+//};
+
+//
 // HELPERS
 //
 

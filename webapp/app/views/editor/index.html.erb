@@ -40,25 +40,32 @@
     <div id="container">
 
       <div id="header">
-        <div class="left links">
-          <a href="javascript:Exercise.previous()">Previous</a>
-          <a href="javascript:Exercise.choose()">Choose</a>
-          <a href="javascript:Exercise.next()">Next</a>
-        </div>
-        <div class="middle links" id="exercise_number">No exercise selected</div>
-        <div class="right links ">
-          <a href="javascript:Exercise.remote_save()">Save</a>
-          <a href="javascript:Exercise.remote_load()">Restore</a>
+        <div class="links">
           <a href="javascript:User.logout()">Logout</a>
         </div>
+        <!--
+        <div class="left links"></div>
+        <div class="middle links" id="exercise_number">No exercise selected</div>
+        <div class="right links "></div>
+        -->
       </div>
 
       <div id="column_headers">
         <div class="column_header left">
-          Instructions
+          Exercise
+          <div class="links">
+            <a href="javascript:Exercise.previous()"><span>&laquo;</span></a>
+            <a href="javascript:Exercise.choose()"><span>Choose</span></a>
+            <a href="javascript:Exercise.next()"><span>&raquo;</span></a>
+          </div>
         </div>
         <div class="column_header middle">
           Code
+          <div class="links">
+            <a href="javascript:Exercise.remote_save_code()"><span id="save_button" class="icon disk">Save</span></a>
+            <a href="javascript:Exercise.remote_load_code()"><span id="load_button" class="icon rotate">Load</span></a>
+
+          </div>
         </div>
         <div class="column_header right">
           Result

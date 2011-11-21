@@ -101,11 +101,11 @@ function renderResultFrame() {
       "document.observe('dom:loaded', function() {",
         "if (window.g) {window.g.exit();}",
         "try {",
-        editor_code,
+          editor_code,
+          "reload({'run':run, 'draw':draw, 'setup':setup, 'mouseMoved':mouseMoved});",
         "} catch (error) {",
-        report_error,
+          report_error,
         "}",
-        "reload({'run':run, 'draw':draw, 'setup':setup, 'mouseMoved':mouseMoved});",
       "});",
       "</script>"
     ].join("\n");
@@ -123,6 +123,7 @@ document.observe("dom:loaded", function() {
     onChange: function() {
       clearTimeout(render_timer);
       render_timer = setTimeout(renderResultFrame, render_delay);
+      Exercise.save_icon_dirty();
     }
   });
   render_timer = setTimeout(renderResultFrame, render_delay);

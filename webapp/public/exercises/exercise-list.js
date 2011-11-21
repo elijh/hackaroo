@@ -6,6 +6,7 @@ Exercise.define([
   ['Introduction to Functions', 'intro-to-functions'],
   ['Drawing Lines', 'g-lines'],
   ['Mousing Around', 'g-pulsing-sun'],
-  ['Boxes and Loops', 'g-color-boxes']
+  ['Boxes and Loops', 'g-color-boxes'],
+  ['Arrays', 'g-worms'],
 ]);
 

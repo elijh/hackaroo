@@ -11,9 +11,10 @@
 
 ActiveRecord::Schema.define(:version => 20111108022337) do
 
-  create_table "files", :force => true do |t|
+  create_table "source_files", :force => true do |t|
     t.string   "name"
     t.text     "data"
+    t.integer  "exercise_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

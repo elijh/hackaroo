@@ -11,7 +11,7 @@
 body {
   padding: 0;
   margin: 0;
-  background: #eee;
+  background: #ccc;
 }
 
 #container {
@@ -20,23 +20,24 @@ body {
 #header {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 50px;
+  height: 30px;
   padding-left: 1%;
+  padding-right: 0.5%;
 }
 #header .links {
-  line-height: 50px;
-  width: 33%;
-  float: left;
+  line-height: 30px;
+  /* width: 33%; */
+  float: right;
 }
-#header .links.right {text-align:right;}
-#header .links.middle {text-align:center;}
+/* #header .links.right {text-align:right;}
+#header .links.middle {text-align:center;} */
 
 #column_headers {
   position: absolute;
-  top: 50px;
+  top: 30px;
   right: 0; 
   left: 0; 
-  height: 20px;
+  height: 40px;
 }
 #columns {
   position: absolute;
@@ -101,15 +102,33 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  line-height: 20px;
+  line-height: 40px;
   font-size: 14px;
   font-weight: bold;
-  padding-left: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
   margin: 0;
-  background: #666;
-  color: white;
+  background: #ddd;
+  color: black;
   font-family: monospace;
 }
+.column_header .links {
+  float: right;
+}
+.column_header a {
+  font-weight: normal;
+  text-decoration: none;
+  padding: 4px;
+}
+.column_header a span {}
+
+.column_header a:hover {
+  background: #999;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
 .column_header.left {
   right: 70%;
 }
@@ -146,4 +165,23 @@ body {
   padding: 4px;
   overflow: auto;
 }
+
+#instructions h1.first {margin-top:0}
+#instructions h1.first span {display: block; color: #666; font-size: 80%}
+#instructions h1 {line-height: 1em}
+
+/*
+ * images and widgets
+ */
+
+.icon {
+  background-repeat: no-repeat !important;
+  background-position: 0 50% !important;
+  padding-left: 20px !important;
+}
+
+.tick {background-image: url(/img/tick.png)}
+.disk {background-image: url(/img/disk.png)}
+.rotate {background-image: url(/img/arrow_rotate_clockwise.png)}
+.spinner {background-image: url(/img/spinner.gif)}
 

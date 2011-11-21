@@ -11,7 +11,7 @@ var Exercise = {
   
   init: function() {
     this.current = 0;
-    this.load_code();
+    this.load_code(this.current);
   },
   
   next: function() {
@@ -36,11 +36,11 @@ var Exercise = {
   },
 
   set: function(ex) {
-    this.save_code();
+    this.save_code(this.current);
     this.current = ex;
-    $('instructions').update(this.body(this.current));
-    $('exercise_number').update( "Exercise " + this.current + " &mdash; " + this.title(this.current)); 
-    this.load_code();
+    var title = "<h1 class='first'><span>Exercise " + this.current + " </span> " + this.title(this.current) + "</h1>\n\n";
+    $('instructions').update(title + this.body(this.current));
+    this.load_code(this.current);
   },
 
   link: function(ex) {
@@ -48,11 +48,6 @@ var Exercise = {
   },
 
   body: function(ex) {
-    // convert the function into a string.
-    //var code_str = new String(this.list[ex].body);
-    // clean up
-    //code_str = code_str.replace('function () {','').replace(/\}$/,'').replace(/    /g,'').replace(/(^\n|\n  $)/g, "");
-    //return(code_str);
     return(this.list[ex].body);
   },
 
@@ -60,14 +55,74 @@ var Exercise = {
     return(this.list[ex].title);
   },
 
-  save_code: function() {
-    localStorage.setItem('code-'+this.current, editor.getValue());
+  save_code: function(exercise_id, code) {
+    localStorage.setItem('code-'+exercise_id, code || editor.getValue());
+    localStorage.setItem('code-modified-at-'+exercise_id, new Date().getTime());
   },
 
-  load_code: function() {
-    editor.setValue(localStorage.getItem('code-'+this.current) || "\n\n\n\n\n\n");
+  load_code: function(exercise_id) {
+    editor.setValue(localStorage.getItem('code-'+exercise_id) || "\n\n\n\n\n\n");
   },
 
+  get_code_timestamp: function(exercise_id) {
+    return localStorage.getItem('code-modified-at-'+exercise_id);
+  },
+  
+  remote_save_code: function() {
+    var exercise_id = this.current;
+    var path = '/files'
+    new Ajax.Request(path, {
+      method:'post',
+      parameters: {
+        exercise_id: exercise_id,
+        user_id: User.current,
+        content: editor.getValue()
+      },
+      onSuccess: function(transport) {
+        console.log('saved ' + path);
+        $('save_button').setAttribute('class', 'icon tick');
+      },
+      onFailure: function() {
+        alert('Something went wrong, could not save code.');
+        $('save_button').setAttribute('class', 'icon disk');
+      },
+      onLoading: function () {
+        $('save_button').setAttribute('class', 'icon spinner');
+      }
+    });
+  },
+  
+  remote_load_code: function() {
+    var path = '/files'
+    var exercise_id = this.current;
+    new Ajax.Request(path, {
+      method:'get',
+      parameters: {
+        exercise_id: exercise_id,
+        user_id: User.current,
+        timestamp: this.get_code_timestamp(exercise_id)
+      },
+      onSuccess: function(transport) {
+        console.log('success');
+        console.log(transport.responseText);
+        console.log(Exercise.current);
+        console.log(exercise_id);
+        if (Exercise.current == exercise_id) {
+          Exercise.save_code(exercise_id, transport.responseText);
+        }
+      },
+      onComplete: function() {
+        if (Exercise.current == exercise_id) {
+          Exercise.load_code(exercise_id);
+        }
+        $('load_button').setAttribute('class', 'icon rotate');
+      },
+      onLoading: function () {
+        $('load_button').setAttribute('class', 'icon spinner');
+      }
+    });
+  },
+  
   define: function(arry) {
     var j = this.list.length+1;  // we start indexing at 1
     for (var i=0; i<arry.length; i++) {
@@ -95,7 +150,18 @@ var Exercise = {
 
   clear_storage: function() {
     localStorage.clear();
+  },
+
+//  icon_progress: function() {
+//    $('save_button').removeClassName('disk').removeClassName('tick').addClassName('spinner');
+//  },
+//  
+//  icon_saved: function() {
+//    $('save_button').removeClassName('spinner').removeClassName('disk').addClassName('tick');
+//  },
+//  
+  save_icon_dirty: function() {
+    $('save_button').setAttribute('class', 'icon disk');
   }
-  
 }
 
