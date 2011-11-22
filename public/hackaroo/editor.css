@@ -1,0 +1,187 @@
+/* general styles */
+
+/*
+.stretch {
+  position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+}
+*/
+
+/* dom specific */
+
+body {
+  padding: 0;
+  margin: 0;
+  background: #ccc;
+}
+
+#container {
+  position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+}
+#header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 30px;
+  padding-left: 1%;
+  padding-right: 0.5%;
+}
+#header .links {
+  line-height: 30px;
+  /* width: 33%; */
+  float: right;
+}
+/* #header .links.right {text-align:right;}
+#header .links.middle {text-align:center;} */
+
+#column_headers {
+  position: absolute;
+  top: 30px;
+  right: 0; 
+  left: 0; 
+  height: 40px;
+}
+#columns {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  bottom: 0;
+  left: 0; 
+}
+
+#instructions pre {
+  font-size: 11px;
+  padding: 8px;
+}
+#result {
+  display: block;
+  border: none;
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.CodeMirror-scroll {
+  height: auto; overflow: visible;
+}
+
+/* 
+ * COLUMNS
+ *
+
+  |<------- 100% ------------->|
+  |-| 1%
+    |<---->| 32%
+
+  | |      | |      | |      | |
+
+*/
+
+.column {
+  background: white;
+  overflow-x: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.column.left {
+  right: 70%;
+}
+.column.middle {
+  right: 30.5%;
+  left: 30.5%;
+}
+.column.right {
+  left: 70%;
+}
+
+.column_header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  line-height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin: 0;
+  background: #ddd;
+  color: black;
+  font-family: monospace;
+}
+.column_header .links {
+  float: right;
+}
+.column_header a {
+  font-weight: normal;
+  text-decoration: none;
+  padding: 4px;
+}
+.column_header a span {}
+
+.column_header a:hover {
+  background: #999;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.column_header.left {
+  right: 70%;
+}
+.column_header.middle {
+  right: 30.5%;
+  left: 30.5%;
+}
+.column_header.right {
+  left: 70%;
+}
+
+/*
+ * instruction layout
+ */
+ 
+.column.left {padding: 10px}
+
+#instructions {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+#instructions p, #instructions pre {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#instructions code {
+  background: #FFEFCA;
+}
+#instructions pre {
+  background: #FFEFCA;
+  border: 1px solid #C1AE83;
+  padding: 4px;
+  overflow: auto;
+}
+
+#instructions h1.first {margin-top:0}
+#instructions h1.first span {display: block; color: #666; font-size: 80%}
+#instructions h1 {line-height: 1em}
+
+/*
+ * images and widgets
+ */
+
+.icon {
+  background-repeat: no-repeat !important;
+  background-position: 0 50% !important;
+  padding-left: 20px !important;
+}
+
+.tick {background-image: url(/img/tick.png)}
+.disk {background-image: url(/img/disk.png)}
+.rotate {background-image: url(/img/arrow_rotate_clockwise.png)}
+.spinner {background-image: url(/img/spinner.gif)}
+

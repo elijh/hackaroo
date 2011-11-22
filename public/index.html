@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hackaroo</title>
+    <link rel="icon" href="/img/icon.png" type="image/x-icon" /> 
+
+    <script src="/lib/prototype.js"></script>
+
+    <!-- modalbox -- popup dialog -->
+    <link rel="stylesheet" href="/lib/modalbox/modalbox.css"/> 
+    <script src="/lib/modalbox/modalbox.js"></script> 
+
+    <!-- hackaroo -->
+    <script src="/hackaroo/user.js"></script>
+
+    <script>
+      document.observe("dom:loaded", function() {
+        User.init();
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+
