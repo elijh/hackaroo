@@ -1,0 +1,13 @@
+Lets get started. Type the code you see below into the area marked 'code' to the right. If the code is typed correctly, the output from running the code is shown under 'result'. 
+
+Here is a very simple program:
+
+    write("Hello World!");
+    write("Hello Again");
+    write("I like typing this.");
+    write("This is fun.");
+    write('Yay! Printing.');
+    write("I'd much rather you 'not'.");
+    write('I "said" do not touch this.');
+
+Note that you can use double `"` or single `'` quotes for writing text values. Single quotes are useful when your text starts with double quotes, and vice versa. 

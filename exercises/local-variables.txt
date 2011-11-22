@@ -1,0 +1,14 @@
+
+
+    function blah() {
+
+    }
+
+
+
+This next bit of code will bomb out if you run it.
+It doesn't work because `kind_of_fish` is only defined inside the
+function `write_fish()`. Outside of `write_fish()`, it doesn't exist.
+
+    write(kind_of_fish);
+

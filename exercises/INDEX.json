@@ -1,0 +1,5 @@
+{
+//  "order": ["welcome", "introduction", "strings", "variables", "functions",
+//         "graphics", "loops", "arrays", "hashes", "classes"]
+  "order": ["welcome", "introduction", "strings"]
+}

@@ -1,0 +1,14 @@
+Every command you run in your program ends with a semicolon `;`. There are some cases where this is not true, which we will cover later. 
+
+    // A comment, this is so you can read your program later.
+    // Anything after the // is ignored by javascript.
+
+    write("I could have code like this."); // and the comment after is ignored
+
+    // You can also use a comment to "disable" or comment out a piece of code:
+    // write("This won't run.");
+
+    write("This will run.");
+
+In the future, when you see comments in the example code, you don't need to copy them.
+

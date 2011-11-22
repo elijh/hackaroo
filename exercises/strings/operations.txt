@@ -1,0 +1,5 @@
+title: String Operations
+
+here are some operations you can do on strings.
+
+

@@ -1,0 +1,199 @@
+1
+
+    var x=0;
+    var y=0;
+
+    function setup() {
+      g.size(400,400); // the drawing area size
+      g.background(0); // black background
+      
+      // set initial position to be in the center:
+      x = g.width/2;
+      y = g.height/2;
+    }
+
+    function draw() {
+      g.fill(255);  // white fill
+      
+      // offset the x,y coordinate by some random amount:
+      x = x + g.random(-10,10);
+      y = y + g.random(-10,10);
+      
+      // draw a tiny 10x10 box
+      g.rect(x,y,10,10);
+    }
+
+2
+
+    var x=0;
+    var y=0;
+
+    function setup() {
+      g.size(400,400);
+      g.background(0);
+      x = g.width/2;
+      y = g.height/2;
+    }
+
+    function draw() {
+      g.fill(255,128); // white fill, 50% opacity
+
+      x = x + g.random(-10,10);
+      y = y + g.random(-10,10);
+      
+      // make it wrap around when it hits the edge
+      if (x > g.width)  {x = 0;}
+      if (y > g.height) {y = 0;}
+      if (x < 0)        {x = g.width;}
+      if (y < 0)        {y = g.height;}
+
+      g.rect(x,y,10,10);
+    }
+
+3
+
+    // create an empty object assigned to
+    // a global variable 'snail'
+    var snail = {};
+
+    function setup() {
+      g.size(400,400);
+      g.background(0);
+      
+      // add properties 'x' and 'y' to our
+      // object 'snail'
+      snail.x = g.width/2;
+      snail.y = g.height/2;
+    }
+
+    function draw() {
+      g.fill(255,128);
+      walk(snail);
+      g.rect(snail.x, snail.y, 10,10);
+    }
+
+    // write a function to handle moving the snail
+    function walk(snail) {
+      var x = snail.x;
+      var y = snail.y;
+      
+      x = x + g.random(-10,10);
+      y = y + g.random(-10,10);
+      
+      if (x > g.width)  {x = 0;}
+      if (y > g.height) {y = 0;}
+      if (x < 0)        {x = g.width;}
+      if (y < 0)        {y = g.height;}
+
+      snail.x = x;
+      snail.y = y;
+    }
+
+4
+
+    // create an empty array of snails.
+    var snails = [];
+
+    function setup() {
+      g.size(400,400);
+      g.background(0);
+      g.noStroke();
+      
+      // fill 'snails' array with new snail objects
+      snails[0] = {};
+      snails[0].x = g.width/2;
+      snails[0].y = g.height/2;
+      snails[0].color = g.color(255,0,0,128);
+      
+      snails[1] = {};
+      snails[1].x = g.width/2;
+      snails[1].y = g.height/2;
+      snails[1].color = g.color(255,255,0,128);
+    }
+
+    function draw() {
+      g.fill(255,128);
+
+      walk(snails[0]);
+      g.fill(snails[0].color);
+      g.rect(snails[0].x, snails[0].y, 10,10);
+      
+      walk(snails[1]);
+      g.fill(snails[1].color);
+      g.rect(snails[1].x, snails[1].y, 10,10);
+    }
+
+    // write a function to handle moving the snail
+    function walk(snail) {
+      var x = snail.x;
+      var y = snail.y;
+      
+      x = x + g.random(-10,10);
+      y = y + g.random(-10,10);
+      
+      if (x > g.width)  {x = 0;}
+      if (y > g.height) {y = 0;}
+      if (x < 0)        {x = g.width;}
+      if (y < 0)        {y = g.height;}
+
+      snail.x = x;
+      snail.y = y;
+    }
+
+
+5
+
+
+    // create an empty array of snails.
+    var snails = [];
+
+    function setup() {
+      g.size(400,400);
+      g.background(0);
+
+      // fill 'snails' array with new snail objects
+      snails[0] = new_snail();
+      snails[1] = new_snail();
+      snails[2] = new_snail();
+      snails[3] = new_snail();
+    }
+
+    function draw() {
+      for (var i=0; i<snails.length; i++) {
+        var snail = snails[i];
+        walk(snail);
+        g.fill(snail.color, 70);
+        g.stroke(snail.color, 100);
+        g.ellipse(snail.x, snail.y, 10, 10);
+      }
+    }
+
+    //
+    // move the snail a tiny bit
+    //
+    function walk(snail) {
+      var x = snail.x;
+      var y = snail.y;
+
+      x = x + g.random(-10,10);
+      y = y + g.random(-10,10);
+
+      if (x > g.width)  {x = 0;}
+      if (y > g.height) {y = 0;}
+      if (x < 0)        {x = g.width;}
+      if (y < 0)        {y = g.height;}
+
+      snail.x = x;
+      snail.y = y;
+    }
+
+    //
+    // creates a new snail, of a random color.
+    //
+    function new_snail() {
+      var my_snail = {};
+      my_snail.x = g.width/2;
+      my_snail.y = g.height/2;
+      my_snail.color = g.color(g.random(255),g.random(255),g.random(255));
+      return my_snail;  
+    }
