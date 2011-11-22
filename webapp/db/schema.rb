@@ -9,12 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111108022337) do
+ActiveRecord::Schema.define(:version => 20111122025121) do
+
+  create_table "exercises", :force => true do |t|
+    t.string "name"
+    t.text   "data"
+  end
 
   create_table "source_files", :force => true do |t|
     t.string   "name"
     t.text     "data"
     t.integer  "exercise_id"
+    t.string   "exercise_name"
+    t.string   "section_name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

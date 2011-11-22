@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'user/:username', :controller => 'user', :action => 'index'
   map.resource :files
+  map.resources :exercises
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

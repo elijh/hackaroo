@@ -4,6 +4,8 @@ class CreateSourceFiles < ActiveRecord::Migration
       t.string :name
       t.text :data
       t.integer :exercise_id
+      t.string :exercise_name
+      t.string :section_name
       t.integer :user_id
       t.timestamps
     end

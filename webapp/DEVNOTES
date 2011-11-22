@@ -15,6 +15,7 @@ Exercises
   
   Good sources for inspiration:
   
+  http://javascript.infogami.com/Javascript_in_Ten_Minutes
   http://mislav.uniqpath.com/poignant-guide/
   http://hackety-hack.com/
     https://github.com/hacketyhack/hacketyhack/tree/master/lessons
@@ -31,12 +32,16 @@ libraries used:
 
   for rendering the result:
     prototype
-    jcanvascript
+    processingjs
 
   for the editor
     prototype
     codemirror2
     showdown
+
+Javascript MVC backends:
+
+  http://spinejs.com/
 
 Canvas
 ----------------------------------
