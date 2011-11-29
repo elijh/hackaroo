@@ -1,6 +1,6 @@
 {
   "title": "Introduction",
   "name": "introduction",
-  "order": ["getting-started", "comments", "arguments"]
+  "order": ["getting-started", "comments", "numbers-and-strings", "intro-to-variables", "intro-to-functions", "fix-the-syntax"]
 }
 

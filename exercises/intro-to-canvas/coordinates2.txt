@@ -1,0 +1,36 @@
+{"copy":true}
+
+Lets improve upon this by showing the coordinates where the mouse is:
+
+We will use the special function `mouseMoved()`. It is called each time the mouse changes position inside the canvas.
+
+Again, you don't need to copy the comments.
+
+Here is the updated code:
+
+    function setup() {
+      g.size(300,300);
+      g.background(0);  // this does the same thing 
+                        // as g.background(0,0,0);
+      g.grid(30);
+    }
+
+    function mouseMoved() {
+      // reset the background
+      g.background(0);
+      g.grid(30);
+      
+      // set white (255) as the draw color
+      g.fill(255);
+      
+      // the variables g.mouseX and g.mouseY hold
+      // the current x and y positions of the mouse.
+      // Write this position to our canvas:
+      
+      g.text("x = " + g.mouseX, 10, 20);
+      g.text("y = " + g.mouseY, 10, 40);
+    }
+
+> NOTE: Make sure that you don't have two `setup()` functions. 
+
+

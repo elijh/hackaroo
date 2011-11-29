@@ -1,0 +1,39 @@
+So far, we have only passed strings to the function `write`, but we can pass other types of values too, like numbers:
+
+    write("testing numbers...");
+    write(1);
+    write(2);
+    write(1+2);
+
+The function `write` can be passed multiple values, each separated by a comma. Each value passed to a function is called an "argument." Why? I am not sure, but don't argue.
+
+    write("I will now count my chickens:");
+    write("Roosters", 100 - 25 * 3);
+    write("Hens", 25 + 30 / 6);
+
+    write("Now I will count the eggs:");
+    write(3 + 2 + 1 - 5 + 4 % 1 / 4 + 6);
+
+The operator `%` is called *modulo*. It is like division, but it returns the remainder that is left over after you divide one number by another. For example, if you divide 15 by 7, you get 2 with a remainder of 1. Lets confirm:
+
+    write(15 % 7);
+
+Modulo is a little tricky, but we will use it a lot later, so it is good to get used to it.
+
+Another special operator is the `+` (plus sign). It can be used to join two strings together:
+
+    // adding the two strings makes a single string
+    write("This is a string." + "And so is this");
+    
+    // here we pass two strings as separate arguments
+    write("This is a string.", "And so is this");
+
+What is the difference between the first line that has a single argument and the second line that has two arguments?
+
+Strings and numbers can also be added together. This will create a new string:
+
+    write(3 + " is the magic number");
+
+In javascript, `+` is the only operator that works on strings. Don't try to multiple a string!
+
+

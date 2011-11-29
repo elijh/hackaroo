@@ -1,9 +1,7 @@
 var inputs = [];
 var line_number = 0;
-
-canvas = null;
-run = null;
-//draw = null;
+var special_functions = ['run', 'setup', 'draw', 'mouseClicked', 'mouseDragged', 'mouseMoved',  'mouseOut', 'mouseOver', 'mousePressed', 'mouseReleased', 'keyPressed', 'keyReleased', 'keyTyped']
+var auto_resizing = false;
 
 //
 // OUTPUT AND INPUT
@@ -15,7 +13,14 @@ function write() {
   if (output) {
     var html = "<div><span>" + line_number + "</span>";
     for (var i = 0, length = arguments.length; i < length; i++) {
-      html += (arguments[i]+"").replace(/\n/g,"<br/>").replace(/\t/g,"&nbsp;&nbsp;&nbsp;&nbsp;") + " ";
+      var value = arguments[i];
+      if (typeof(value) == 'object' && typeof(value.inspect) == 'function') {
+        value = value.inspect();
+      }
+      if (typeof(value) != 'string') {
+        value = new String(value);
+      }
+      html += value.replace(/\n/g,"<br/>").replace(/\t/g,"&nbsp;&nbsp;&nbsp;&nbsp;") + " ";
     }
     html += "</div>";
     output.update(output.innerHTML + html);
@@ -106,33 +111,69 @@ function reportError(exception, offset_from_start_of_file, offset_from_start_of_
   write(exception);
 }
 
-
 //
 // called every time the DOM is loaded
 //
 function reload(options) {
   if (typeof options.run == 'function') {
-    run();
+    options.run();
   }
   if (options.setup || options.draw) {
     // set up processing using the methods defined in source code
     new Processing($('canvas'), function(processing) {
       window.g = processing;
-      processing.setup = options.setup;
-      if (typeof options.draw == 'function') {processing.draw = options.draw}
-      if (typeof options.mouseMoved == 'function') {processing.mouseMoved = options.mouseMoved}
+      for (var i = 0; i < special_functions.length; i++) {
+        var function_name = special_functions[i];
+        if (typeof options[function_name] == 'function') {
+          processing[function_name] = options[function_name];
+        }
+      }
+      
+      // custom methods we are adding to processing:
+      
+      processing.autoResize = function() {
+        auto_resizing = true;
+        // I am not sure where these magic numbers come from. 
+        // there is a weird gap under the canvas that I can't get rid of.
+        this.size(window.innerWidth-2, window.innerHeight-7);
+      }
+      
+      processing.grid = function(step) {
+        var color = g.get(0,0);
+        g.stroke(g.abs(g.brightness(color)-255), 50);
+        for (var x = step; x < g.width; x += step) {
+           g.line(x, 0, x, g.height);
+        }
+        for (var y = step; y < g.height; y += step) {
+           g.line(0, y, g.width, y);
+        }
+      }
     });
   }
 }
 
-document.observe("dom:loaded", function() {
-  // canvas = $('canvas');
+//
+// 
+//
+//var windowHeight = 0;
+//var windowWidth = 0;
+//function updateWindowSize() {
+
+//}
+
+Event.observe(window, 'resize', function() {
+  if (auto_resizing) {
+    window.g.setup();
+  }
 });
 
+//document.observe("dom:loaded", function() {
+//  // canvas = $('canvas');
+//});
 
-Event.observe(window, 'unload', function() {
-  // window.g.exit();
-});
+//Event.observe(window, 'unload', function() {
+//  // window.g.exit();
+//});
 
 //
 // override console.error, in order to display these errors.

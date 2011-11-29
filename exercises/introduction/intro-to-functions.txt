@@ -1,0 +1,54 @@
+Here is how you make a function:
+
+    function write_hi() {
+      write("Well, hello there.");
+    }
+
+That is called a function *definition*. We defined a function. If you want to use this function, you *call* it by typing the name and then parentheses. As always, you end your command with a semicolon.
+
+    write_hi();
+
+You can reuse functions over and over:
+
+    write_hi();
+    write_hi();
+    write_hi();
+
+OK, `write_hi()` was pretty boring. Lets make a function with an *argument*.
+
+A function may require more information in order to perform its action. This additional information is called an *argument*.
+
+The arguments come after the function name and are surrounded by parentheses.
+
+    function write_fish(kind_of_fish) {
+      write(kind_of_fish + " fish.");
+    }
+
+    write_fish("red");
+    write_fish("blue");
+    write_fish("one");
+    write_fish("two");
+
+Here is a function with two arguments:
+
+    function write_robot(weapon, target) {
+      write("the giant robot aims its " + 
+        weapon + " at the " + target + "."
+      );
+    }
+
+    write_robot("laser beam", "alien ship");
+    write_robot("heat ray", "sea monster");
+
+Functions can also return a value:
+
+    function the_answer() {
+      return 42;
+    }
+
+    write("What is the secret to the universe?");
+    write(the_answer());
+
+In this example, when we call `the_answer()` this gets replaced by the number 42, which is then passed to `write()`.
+
+

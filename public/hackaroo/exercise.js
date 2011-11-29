@@ -15,24 +15,33 @@
 var markdown_converter = new Showdown.converter();
 
 var Exercise = {
-  current_exercise_index: null, // index of currently active exercise
-  current_section_index: 0,     // index of currently active section
+  current_exercise_index: 0,  // index of currently active exercise
+  current_section_index: 0,   // index of currently active section
   list: [],
 
-  exercise: function() {
-    return(this.list[this.current_exercise_index]);
+  exercise: function(index) {
+    index = index || this.current_exercise_index
+    return this.list[index];
   },
   
-  section: function() {
+  section: function(index, exercise_index) {
+    index = index || this.current_section_index;
     try {
-      return(this.exercise().sections[this.current_section_index]);
+      return this.exercise(exercise_index).sections[index];
     } catch(error) {
-      return(this.exercise());
+      return this.exercise(exercise_index);
     }
   },
   
   init: function() {
     this.load_exercises_from_server();
+  },
+
+  // called after load_exercises_from_server () is finished
+  init_finished: function() {
+    this.local_load_state();
+    this.local_load_code();
+    this.update_exercise_text();
   },
   
   next: function() {
@@ -48,7 +57,7 @@ var Exercise = {
   },
 
   choose: function() {
-    var html = "<ol>";
+    var html = "<ol start='0'>";
     for (var i=0; i< this.list.length; i++) {
       html += "<li>" + this.link(i) + "</li>";
     }
@@ -58,19 +67,21 @@ var Exercise = {
 
   set: function(exercise,section) {
     this.local_save_code();
-    this.current_exercise_index = exercise;
+    this.current_exercise_index = exercise || 0;
     this.current_section_index = section || 0;
-    
+    this.update_exercise_text();
+    this.local_load_code();
+  },
+
+  update_exercise_text: function() {
     var header = "<h1 class='first'>" + this.current_title() + "</h1>\n";
     if (this.exercise().sections) {
        header += "<div class='section_links'>" + this.section_links() + "</div>\n";
     }
     $('instructions').update(header + this.current_body());
     $('exercise_number').update(this.current_exercise_index);
-    
-    this.local_load_code();
   },
-
+  
   link: function(ex) {
     return('<a href="javascript:Exercise.set(#{ex_num});Modalbox.hide();">#{label}</a>'.interpolate({"ex_num":ex, label:this.list[ex].title}));
   },
@@ -79,7 +90,8 @@ var Exercise = {
     var length = this.exercise().sections.length;
     var html = [];
     for (var i=0; i<length; i++) {
-      html.push('<a href="javascript:Exercise.set(#{exercise_num}, #{section_num});">#{i}</a>'.interpolate({"exercise_num":this.current_exercise_index, "section_num":i, "i":i}));
+      var a_class = (this.exercise().sections && i == this.current_section_index) ? 'active' : '';
+      html.push('<a class="#{class}" href="javascript:Exercise.set(#{exercise_num}, #{section_num});">#{i}</a>'.interpolate({"class":a_class, "exercise_num":this.current_exercise_index, "section_num":i, "i":i}));
     }
     return(html.join(' '));
   },
@@ -100,14 +112,24 @@ var Exercise = {
     return(this.exercise().title);
   },
 
-  storage_id: function() {
-    if (this.exercise().sections) {
-      return(this.exercise().name + ' ' + this.section().name);
+  storage_id: function(exercise, section) {
+    if (this.exercise(exercise).sections) {
+      return(this.exercise(exercise).name + ' ' + this.section(section, exercise).name);
     } else {
-      return(this.exercise().name);
+      return(this.exercise(exercise).name);
     }
   },
 
+  local_save_state: function() {
+    localStorage.setItem('current-exercise', this.current_exercise_index);
+    localStorage.setItem('current-section', this.current_section_index);
+  },
+  
+  local_load_state: function() {
+    this.current_exercise_index = parseInt(localStorage.getItem('current-exercise')) || 0;
+    this.current_section_index = parseInt(localStorage.getItem('current-section')) || 0;
+  },
+  
   local_save_code: function(code) {
     if (this.exercise()) {
       var id = this.storage_id();
@@ -118,7 +140,17 @@ var Exercise = {
 
   local_load_code: function() {
     var id = this.storage_id();
-    editor.setValue(localStorage.getItem('code-'+id) || "\n\n\n\n\n\n");
+    var code = localStorage.getItem('code-'+id) || "";
+    if (code.trim() == "") {
+      if (this.section().copy) {
+        // copy from prior section
+        id = this.storage_id(this.current_exercise_index, this.current_section_index-1);
+        code = localStorage.getItem('code-'+id);
+      } else {
+        code = "\n\n\n\n\n\n";
+      }
+    }
+    editor.setValue(code);
   },
 
   get_code_timestamp: function() {
@@ -208,10 +240,7 @@ var Exercise = {
       onSuccess: function(transport) {
         Exercise.list = transport.responseText.evalJSON();
         console.log('loaded exercise data');
-        Exercise.set(0);
-        //for (var i = 0; i<Exercise.list.length; i++) {
-        //  console.log('  ' + Exercise.list[i].name);
-        //}
+        Exercise.init_finished();
       },
       onFailure: function() { alert('Could not load exercise data'); }
     });

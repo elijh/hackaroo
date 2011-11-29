@@ -1,0 +1,33 @@
+{"copy":true}
+
+Now, modify the code to make to add a horizontal and vertical line where the mouse is. We will also change where the x and y coordinates are drawn, to make it more clear:
+
+    function setup() {
+      g.size(300,300);
+      g.background(0);
+      g.grid(30);
+    }
+
+    function mouseMoved() {
+      g.background(0);
+      g.grid(30);
+      g.stroke(200,200,255); // set the line color 
+                             // to be light blue
+
+      // vertical line (displaying x coordinate)
+      g.line(g.mouseX, 0, g.mouseX, 300);
+      g.text(g.mouseX, g.mouseX + 2, 10);
+
+      // horizontal line (displaying y coordinate)
+      g.line(0, g.mouseY, 300, g.mouseY);
+      g.text(g.mouseY, 2, g.mouseY - 2);
+    }
+
+**Your turn**
+
+Modify the code to draw four additional red lines: one from each corner of the canvas to the mouse position. 
+
+Hints:
+
+* Use `g.stroke()` to set the line color.
+* Use `g.line()` to draw the line. The function `g.line()` takes four arguments: x1, y1, x2, y2. The line is drawn from coordinate (x1,y1) to (x2,y2).

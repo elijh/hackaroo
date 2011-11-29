@@ -39,18 +39,24 @@ class ExercisesController < ApplicationController
   def read_exercise_file(filepath)
     name = File.basename(filepath).sub('.txt','')
     body = File.read(filepath)
-    body.sub!(/.*?\n\n/m, '')
-    meta = $~[0] || ""
+    body.sub!(/^\{.*?\}\n/m, '')
+    meta = $~ ? $~[0] : ""
     data = {}
     if meta.any?
-      meta.lines.each do |line|
-        variable, value = line.split(':');
-        variable = variable.strip
-        value = (value||'').strip
-        if variable and variable.any? and value and value.any?
-          data[variable] = value
-        end
+      begin
+        data.merge!(JSON.parse(meta))
+      rescue Exception => exc
+        puts "error parsing '#{meta}' in file #{filepath}"
+        puts exc.to_s
       end
+      #meta.lines.each do |line|
+      #  variable, value = line.split(':');
+      #  variable = variable.strip
+      # value = (value||'').strip
+      # if variable and variable.any? and value and value.any?
+      #    data[variable] = value
+      #  end
+      #end
     end
     data['body'] = BlueCloth.new(data['body'] || body).to_html
     data['name'] ||= name

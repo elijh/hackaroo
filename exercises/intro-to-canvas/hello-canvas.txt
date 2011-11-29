@@ -1,0 +1,52 @@
+Making pretty pictures is more interesting that writing out text, so we are going
+to start using the *canvas*.
+
+To initialize the drawing canvas, you define a function called `setup()`. For drawing graphics, we are going to use a library called 'processing' that is made available to your code through the variable `g`. What does this mean? When we call graphics related functions, we will use the form `g.functionName()`. When we get to objects later, this will make more sense. For now, just go with it.
+
+Here is a very minimal program that uses the drawing canvas:
+
+    function setup() {
+      g.size(200,200);
+      g.background(255,0,0);
+    }
+
+This makes the canvas 200 pixels by 200 pixels in size and fills it with the color red. 
+
+The function `setup()` is a special function. If hackaroo detects it, then a canvas is automatically created and `setup()` is called to initialize the canvas. 
+
+Lets play around a little with changing the color and size by altering our original code:
+
+    function setup() {
+      g.size(300,300);
+      g.background(0,255,0);
+    }
+
+This makes our square bigger and green.
+
+> NOTE: Make sure that you REPLACE the `setup()` function with this new code. Don't keep defining additional `setup()` functions. You never want two functions with the same name!
+
+Colors are specified as a combination of three values (red, green, and blue) in the range 0 to 255. By mixing different values for red, green, and blue we can achieve any color the eye can see. Here are some examples:
+
+    g.background(255,255,255);  // white, 100% for all colors
+    g.background(127,127,127);  // grey, 50% for all colors
+    g.background(0,0,0);        // black, 0% for all colors
+
+    g.background(255,0,0);      // pure red
+    g.background(0,255,0);      // pure green
+    g.background(0,0,255);      // pure blue
+
+    g.background(255,255,0);    // red and green make yellow
+    g.background(255,0,255);    // red and blue make magenta
+    g.background(0,255,255);    // blue and green make cyan
+
+    g.background(255,127,127);      // light red
+    g.background(127,255,127);      // light green
+    g.background(127,127,255);      // light blue
+
+If you try all these, try them one at a time. When you have multiple calls to `g.background()` in your `setup()` function, only the last one will take effect (the prior ones are written over by the latest color). 
+
+**Your turn**
+
+Now try mixing some colors on your own. Can you create a really bright pink square? It should have a little more red than blue, and you will need some green too to make it lighter.
+
+

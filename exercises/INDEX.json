@@ -1,5 +1,5 @@
 {
 //  "order": ["welcome", "introduction", "strings", "variables", "functions",
 //         "graphics", "loops", "arrays", "hashes", "classes"]
-  "order": ["welcome", "introduction", "strings"]
+  "order": ["welcome", "introduction", "intro-to-canvas"]
 }

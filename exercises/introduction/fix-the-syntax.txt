@@ -1,0 +1,59 @@
+**Your turn**
+
+One of the most important skills in programming is learning to detect typos. Sometimes, when your program is run, you will get a very confusing error messages. You probably have already. 
+
+So, let's practice detecting errors in the code. If our code violates the form of how javascript is supposed to be written, this is called a "syntax" error. If our code technically follows the language but does something illogical, this is called a "runtime" error. 
+
+Here are two examples:
+
+    // a syntax error
+    write("ugh, this doesn't work);
+
+    // a runtime error
+    var color = "blue";
+    write("My favorite colour is", colour);
+
+Can you spot the errors? For the syntax error, we open the string with `"` but then never finish the string with another `"`. For the runtime error, we called our variable 'color' when we defined it, but then 'colour' when we used it.
+
+Here is a bunch more code with errors in it. Find them all and get the program to run:
+
+    write("to be a good programmer")
+    write("you need an eagle eye";
+    write(for every detail");
+    
+    Var speed = 10;
+    varposition_x = 10;
+    var position_y 10;
+    
+    write('the spaceship has speed", speed);
+    write("and it's x position is" position_x);
+
+Keep searching for errors until you get the code above to run. As you learn to program, finding errors like this becomes second nature.
+
+Here are some errors with functions:
+
+    function duck {
+      return "quack";
+    }
+    
+    write("duck goes:");
+    write(duck);
+    write(duk());
+
+    function chicken() {
+      "cluck";
+    }
+    
+    write("chicken goes:")
+    write(Chicken());
+    write(chicken();
+    
+    function goose() {
+      return "honk";
+    
+    write("goose goes:");
+    write goose();
+    write(goose{});
+
+Functions are a litte more tricky. If you have difficulty, check back to the previous section on functions to see how they are defined and used.
+

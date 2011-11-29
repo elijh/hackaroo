@@ -166,9 +166,25 @@ body {
   overflow: auto;
 }
 
-#instructions h1.first {margin-top:0}
+#instructions h1.first {margin-top:0; margin-bottom: 0.5em;}
 #instructions h1.first span {display: block; color: #666; font-size: 80%}
 #instructions h1 {line-height: 1em}
+
+#instructions .section_links {
+  margin-bottom: 1em;
+}
+
+#instructions .section_links a {
+  padding: 4px 8px 4px 8px;
+  background: #ccc;
+  color: black;
+  border-radius: 4px;
+  text-decoration: none;
+}
+#instructions .section_links a.active {
+  background: #666;
+  color: white;
+}
 
 /*
  * images and widgets

@@ -1,0 +1,56 @@
+Here is how you make a function:
+
+    function writeHi() {
+      write("Well, hello there.");
+    }
+
+That is called a function *definition*. We defined a function. If you want to use this function, you *call* it by typing the name and then parentheses. As always, you end your command with a semicolon.
+
+    writeHi();
+
+You can reuse functions over and over:
+
+    writeHi();
+    writeHi();
+    writeHi();
+
+The convention typically used for naming functions in javascript is called *camelCase*. In camelCase, you combine multiple words by together by removing the spaces and capitalizing the first letter of each word (except for the first word). So, "alert the user" becomes "alertTheUser". The case is important: "alerttheuser" is not the same as "alertTheUser". We do this because you are not allowed to use spaces in function or variable names.
+
+OK, `writeHi()` was pretty boring. Lets make a function with an *argument*.
+
+A function may require more information in order to perform its action. If we want the computer to paint the door, we should provide a color as well. This additional information is called an *argument*.
+
+The arguments come after the function name and are surrounded by parentheses.
+
+    function writeFish(kind_of_fish) {
+      write(kind_of_fish + " fish.");
+    }
+
+    writeFish("red");
+    writeFish("blue");
+    writeFish("one");
+    writeFish("two");
+
+Here is a function with two arguments:
+
+    function writeRobot(weapon, target) {
+      write("the giant robot aims its " + 
+        weapon + " at the " + target + "."
+      );
+    }
+
+    writeRobot("laser beam", "alien ship");
+    writeRobot("heat ray", "sea monster");
+
+Functions can also return a value:
+
+    function theAnswer() {
+      return 42;
+    }
+
+    write("What is the secret to the universe?");
+    write(theAnswer());
+
+In this example, when we call `theAnswer()` this gets replaced by the number 42, which is then passed to `write()`.
+
+

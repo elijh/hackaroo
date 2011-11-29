@@ -1,0 +1,6 @@
+{
+  "title": "Drawing Canvas",
+  "name": "intro-to-canvas",
+  "order": ["hello-canvas", "coordinates", "coordinates2", "coordinates3"]
+}
+

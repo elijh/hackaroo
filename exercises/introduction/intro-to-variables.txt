@@ -1,0 +1,33 @@
+In programming, a *variable* is a bucket with a name you can store values in. For example:
+
+    var cars = 100;
+    var space_in_a_car = 4.0;
+    var drivers = 30;
+    var passengers = 90;
+
+Variables are created by using the keyword `var`. Optionally, you can choose to initialize the value of the variable when you create it. 
+
+You can use variables to compute new variables:
+
+    var cars_not_driven = cars - drivers;
+    var cars_driven = drivers;
+    var carpool_capacity = cars_driven * space_in_a_car;
+    var average_passengers_per_car = passengers / cars_driven;
+
+And also use these variables in your output:
+
+    write("There are", cars, "cars available.");
+    write("There are only", drivers, "drivers available.");
+    write("There will be", cars_not_driven, "empty cars today.");
+    write("We can transport", carpool_capacity, "people today.");
+    write("We have", passengers, "to carpool today.");
+    write("We need to put about", average_passengers_per_car, "in each car.");
+
+You can change the value of your variable any time you want:
+
+    var space_explorers = 5;
+    write("There are", space_explorers, "space explorers.");
+    write("Then, one is eaten by an alien.");
+    space_explorers = space_explorers - 1;
+    write("Now there are only", space_explorers);
+

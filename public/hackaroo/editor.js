@@ -7,6 +7,12 @@ var render_delay = 1000;
 // we clear the current timer when there is a new change.
 var render_timer = null;
 
+// these are special methods that do certain things if defined in 
+// the user's code.
+var special_functions_map_str = "{'run':run, 'setup':setup, 'draw':draw, 'mouseClicked':mouseClicked, 'mouseDragged':mouseDragged, 'mouseMoved':mouseMoved, 'mouseOut':mouseOut, 'mouseOver':mouseOver, 'mousePressed':mousePressed, 'mouseReleased':mouseReleased, 'keyPressed':keyPressed, 'keyReleased':keyReleased, 'keyTyped':keyTyped}"
+
+var special_functions = ['run', 'setup', 'draw', 'mouseClicked', 'mouseDragged', 'mouseMoved',  'mouseOut', 'mouseOver', 'mousePressed', 'mouseReleased', 'keyPressed', 'keyReleased', 'keyTyped']
+
 //
 // these offsets are used to report correct line number errors.
 // different browsers count differently. chrome counts from the
@@ -43,8 +49,8 @@ var render_template = [
   "      <tr>",
   "        <td class='output'>",
   "          <div id='output'></div>",
-  "          <canvas id='canvas'></canvas>",
-  "        </td>",
+  "          <canvas id='canvas'></canvas></td>",
+//  "        </td>",
   "      </tr>",
 //  "      <tr>",
 //  "        <td class='input' id='input_list'></td>",
@@ -97,12 +103,12 @@ function renderResultFrame() {
     var report_error = "reportError(error, " + offset_from_start_of_file + "," + offset_from_start_of_script + ");";
     var stript_string = [
       "<script>",
-      "var run=null, setup=null, draw=null, mouseMoved=null;",
+      "var " + special_functions.join(", ") + ";",
       "document.observe('dom:loaded', function() {",
         "if (window.g) {window.g.exit();}",
         "try {",
           editor_code,
-          "reload({'run':run, 'draw':draw, 'setup':setup, 'mouseMoved':mouseMoved});",
+          "reload(" + special_functions_map_str + ");",
         "} catch (error) {",
           report_error,
         "}",
@@ -134,5 +140,6 @@ document.observe("dom:loaded", function() {
 
 Event.observe(window, 'unload', function() {
   Exercise.local_save_code();
+  Exercise.local_save_state();
 });
 

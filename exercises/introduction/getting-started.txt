@@ -1,13 +1,26 @@
-Lets get started. Type the code you see below into the area marked 'code' to the right. If the code is typed correctly, the output from running the code is shown under 'result'. 
+Lets get started. Type the code you see below into the area marked **Code** to the right. If the code is typed correctly, the output from running the code is shown under **Result**. 
 
 Here is a very simple program:
 
     write("Hello World!");
-    write("Hello Again");
-    write("I like typing this.");
-    write("This is fun.");
-    write('Yay! Printing.');
-    write("I'd much rather you 'not'.");
-    write('I "said" do not touch this.');
 
-Note that you can use double `"` or single `'` quotes for writing text values. Single quotes are useful when your text starts with double quotes, and vice versa. 
+Simple, eh? Our programs will get more complex! But first, lets understand the different parts to this simple one:
+
+* `write()` - This is a call to the function "write". It will write out whatever you give it to our result area. Function calls always have a open and close parenthesis. 
+* `"Hello World!"` - This is a "string literal". Everything in between the quotes is literal text, not code to be run. 
+* `;` - Commands in javascript end when a semicolon. There are some exceptions to this rule, which we will get to later.
+
+If you were going to describe our simple program in English, you would say "call the function 'write' with the string 'Hello World!'". 
+
+Let's add a little to our first program:
+
+    write("Hello Again");
+    write("Programming languages are powerful,");
+    write("but unforgiving if you type something wrong.");
+    write("Dark and terrible things happen");
+    write("if you leave off the semicolon at the end!");
+
+Try leaving off a semicolon and see what happens!
+
+Also, make sure your parenthesis are "balanced". Every time you have an open paren `(` make sure there is a matching close paren `)`.
+

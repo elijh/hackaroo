@@ -1,0 +1,18 @@
+The canvas is like a piece of graph paper in algebra or trigonometry class. 
+
+The canvas is a little different, however:
+
+* The origin (where the x and y axises meet) is in the top left of the canvas.
+* As you go down, the values of y get larger, not smaller.
+
+To get a sense of how the x and y coordinates work on the drawing canvas, let's set a black background and draw a 50px sized grid:
+
+    function setup() {
+      g.size(300,300);
+      g.background(0,0,0);
+      g.grid(50);
+    }
+
+If your canvas size is 300 x 300 pixels, and your grid size is 50 pixels, you should see six grid cells across and down.
+
+

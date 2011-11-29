@@ -1,5 +1,31 @@
-title: welcome
-name: welcome
+{"title":"Welcome", "name":"welcome"}
 
-Welcome to Hackaroo
+Hackaroo will help you learn to program, using a series of simple exercises in the Javascript programming language. 
+
+The screen is divided into three main areas: exercises, code, and result.
+
+**Exercise Area**
+
+The exercise area displays instructions for each exercise. There are many exercises, each divided into multiple sections.
+
+* To select an exercise, click *Choose* or &raquo; or &laquo;
+* To select a section, click on one of the grey numbered boxes at the top of the exercise area.
+
+The exercise and section numbers start at zero. As you will discover, in programmings, most series start at zero rather than one.
+
+**Code Area**
+
+Every section and exercise has its own area for writing code. 
+
+Anything you type in the code area is automatically saved locally on your computer. 
+
+In order to save your code to the server, hit the *Save* button.
+
+If you want to load the code that is saved on the server, hit the *Load* button. This will overwrite whatever you currently have in the code area, so be careful. 
+
+**Result Area**
+
+As you type in the code area, your program is run and displayed in the result area.
+
+If there are errors, these will be displayed instead of the output of your program.
 
