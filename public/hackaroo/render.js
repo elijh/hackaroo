@@ -70,6 +70,17 @@ function inputKeyPress(event) {
 //};
 
 //
+// TROPO API SIMULATION
+//
+
+function say(str) {
+  write(str);
+}
+
+var currentCall = {};
+currentCall.initialText = "";
+
+//
 // HELPERS
 //
 
