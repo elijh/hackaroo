@@ -18,14 +18,16 @@ class FilesController < ApplicationController
 
   #
   # GET /files/?exercise_id=x&user_id=x&timestamp=time_t
-  #
+  # GET /sourcefile/<user>/<exercise>/<section>.js
+  # 
   def show
     if file = SourceFile.find_by_params(params)
-      # if file.updated_at > Time.at(params[:timestamp].to_i)
-        p file
+      if request.xhr?
         render :json => {:exercise_name => params[:exercise_name], :section_name => params[:section_name], :body => file.data}
-      #else
-      #  render :nothing => true, :status => 304
+      else
+        headers['Content-Type'] = 'text/javascript'
+        render :text => file.data
+      end
     else
       render :nothing => true, :status => 304
     end

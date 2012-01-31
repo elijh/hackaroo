@@ -40,7 +40,10 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing or commenting them out if you're using named routes and resources.
 
   map.connect 'user/:username', :controller => 'user', :action => 'index'
+
   map.resource :files
+  map.connect 'sourcefile/:user_id/:exercise_name/:section_name.:ext', :controller => :files, :action => 'show'
+
   map.resources :exercises
   
   map.connect ':controller/:action/:id'
